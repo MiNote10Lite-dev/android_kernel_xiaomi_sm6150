@@ -38,8 +38,13 @@ void sendnlmsg(char *message)
 		return;
 	}
 
+<<<<<<< HEAD
 	slen = strlen(message);
 	nlh = nlmsg_put(skb_1, 0, 0, 0, MAX_MSGSIZE, 0);
+=======
+	slen = strnlen(message, MAX_MSGSIZE - 1);
+	nlh = nlmsg_put(skb_1, 0, 0, NETLINK_MSG_DONE, MAX_MSGSIZE, 0);
+>>>>>>> parent of 1163dc453ea6 (drivers: input: goodix_fod: Fix netlink message type in sendnlmsg function)
 	NETLINK_CB(skb_1).portid = 0;
 	NETLINK_CB(skb_1).dst_group = 0;
 	message[slen] = '\0';
